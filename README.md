@@ -1,13 +1,11 @@
-# Sample Hardhat Project
+# Charm Core Contracts
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
+Dev Instructions
 
 ```shell
-npx hardhat help
+pnpm i
+
+npx hardhat compile
+npx hardhat deploy
 npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
 ```

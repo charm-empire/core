@@ -2,8 +2,9 @@
 pragma solidity 0.8.18;
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import "./Access.sol";
+import "./ICharmERC20.sol";
 
-contract CharmERC20 is ERC20Upgradeable, Access {
+contract CharmERC20 is ERC20Upgradeable, Access, ICharmERC20 {
     function initialize(
         string memory name_,
         string memory symbol_

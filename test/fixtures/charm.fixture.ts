@@ -1,15 +1,15 @@
 import { deployments, getNamedAccounts, getUnnamedAccounts } from "hardhat";
-import { Hello } from "../../typechain-types";
 import { setupUser, setupUsers } from "./utils";
+import { CharmERC20 } from "../../typechain-types";
 
-export const hello_fixture = deployments.createFixture(async (hre) => {
-  await hre.deployments.fixture(["Hello"]);
+export const charm_fixture = deployments.createFixture(async (hre) => {
+  await hre.deployments.fixture(["CharmERC20"]);
   const { deployer } = await getNamedAccounts();
-  const Hello = await hre.ethers.getContract<Hello>("Hello");
+  const CharmERC20 = await hre.ethers.getContract<CharmERC20>("CharmERC20");
 
   const users = await getUnnamedAccounts();
 
-  const contracts = { Hello };
+  const contracts = { CharmERC20 };
 
   return {
     ...contracts,

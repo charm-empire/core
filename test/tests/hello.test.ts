@@ -1,9 +1,9 @@
-import { hello_fixture } from "../fixtures/hello.fixture";
+import { charm_fixture } from "../fixtures/charm.fixture";
 import { PromiseType } from "../fixtures/utils";
 import { expect, use } from "chai";
 
-describe("Hello Test", () => {
-  type Fixture = PromiseType<ReturnType<typeof hello_fixture>>;
+describe("Charm ERC20 Test", () => {
+  type Fixture = PromiseType<ReturnType<typeof charm_fixture>>;
   let deployer: Fixture["deployer"];
   let alice: Fixture["users"][number];
   let bob: Fixture["users"][number];
@@ -12,31 +12,29 @@ describe("Hello Test", () => {
     ({
       deployer,
       users: [alice, bob],
-    } = await hello_fixture());
+    } = await charm_fixture());
   });
 
-  it("emit test", async () => {
-    const Hello = deployer.Hello;
-    await expect(Hello.message("Some Message"))
-      .to.emit(Hello, "MessageEvent")
-      .withArgs("Some Message");
+  it("$CHARM test", async () => {
+    const $CHARM = deployer.CharmERC20;
+    expect(await $CHARM.name()).to.eq("Charm");
   });
 
-  // Often, chai emit does not match the event.
-  // This validates the installation of @hardhat/toolbox.
-  // Recommended to leave in at least one such test.
-  it("emit incorrect test", async () => {
-    let error = false;
-    try {
-      const Hello = deployer.Hello;
-      await expect(Hello.message("Some Message"))
-        .to.emit(Hello, "MessageEventFail")
-        .withArgs("Some Message");
-    } catch (_err) {
-      error = true;
-    }
-    if (error === false) {
-      throw new Error("Test should have failed");
-    }
-  });
+  // // Often, chai emit does not match the event.
+  // // This validates the installation of @hardhat/toolbox.
+  // // Recommended to leave in at least one such test.
+  // it("emit incorrect test", async () => {
+  //   let error = false;
+  //   try {
+  //     const Hello = deployer.Hello;
+  //     await expect(Hello.message("Some Message"))
+  //       .to.emit(Hello, "MessageEventFail")
+  //       .withArgs("Some Message");
+  //   } catch (_err) {
+  //     error = true;
+  //   }
+  //   if (error === false) {
+  //     throw new Error("Test should have failed");
+  //   }
+  // });
 });

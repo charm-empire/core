@@ -31,6 +31,14 @@ describe("Charm ERC20 Test", () => {
       );
   });
 
+  it("buy charm for ETH", async () => {
+    const ERC20Sale = deployer.ERC20Sale;
+
+    await ERC20Sale.buy(ethers.utils.parseEther(`${1}`), {
+      value: ethers.utils.parseEther(`${0.01}`),
+    });
+  });
+
   // // Often, chai emit does not match the event.
   // // This validates the installation of @hardhat/toolbox.
   // // Recommended to leave in at least one such test.

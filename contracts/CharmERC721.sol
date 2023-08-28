@@ -6,7 +6,7 @@ import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "./Access.sol";
-import "./ICharmERC20.sol";
+import "./interfaces/ICharmERC20.sol";
 import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 
 contract CharmERC721 is ERC721Upgradeable, Access, ReentrancyGuardUpgradeable {

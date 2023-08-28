@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import { charm_fixture } from "../fixtures/charm.fixture";
 import { PromiseType } from "../fixtures/utils";
 import { expect, use } from "chai";
@@ -18,6 +19,16 @@ describe("Charm ERC20 Test", () => {
   it("$CHARM test", async () => {
     const $CHARM = deployer.CharmERC20;
     expect(await $CHARM.name()).to.eq("Charm");
+
+    await expect(
+      $CHARM.mint(deployer.address, ethers.utils.parseEther(`${100}`))
+    )
+      .to.emit($CHARM, "Transfer")
+      .withArgs(
+        ethers.constants.AddressZero,
+        deployer.address,
+        ethers.utils.parseEther(`${100}`)
+      );
   });
 
   // // Often, chai emit does not match the event.

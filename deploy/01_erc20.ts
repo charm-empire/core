@@ -9,15 +9,24 @@ const deploy_function: DeployFunction = async function (
 
   const { deployer } = await getNamedAccounts();
 
-  await deploy("Hello", {
-    contract: "Hello",
+  await deploy("CharmERC20", {
+    contract: "CharmERC20",
     from: deployer,
     log: true,
-    args: ["\nHello, Hardhat!"],
+    proxy: {
+      proxyContract: "OpenZeppelinTransparentProxy",
+      execute: {
+        init: {
+          args: ["Charm", "$CHARM"],
+          methodName: "initialize",
+        },
+      },
+    },
+
     skipIfAlreadyDeployed: true,
   });
 };
 
 export default deploy_function;
 
-deploy_function.tags = ["Hello"];
+deploy_function.tags = ["CharmERC20", "development"];
